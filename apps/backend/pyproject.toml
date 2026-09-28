@@ -2,11 +2,19 @@
 name = "Parch-backend"
 version = "0.1.0"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi>=0.141.1",
+    "pydantic-settings>=2.15.0",
+    "redis>=8.1.0",
+    "uvicorn>=0.54.0",
+]
 
 [dependency-groups]
 dev = [
     "mypy>=2.3.1",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "pytest-env>=1.7.1",
     "ruff>=0.16.8",
     "ty>=0.0.84",
 ]
@@ -54,3 +62,11 @@ plugins = [
 init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+env = [
+    "MODE=TEST",
+]
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]
