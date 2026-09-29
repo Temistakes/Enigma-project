@@ -6,6 +6,8 @@ annotated-types==0.8.0
     # via pydantic
 anyio==4.15.1
     # via starlette
+asyncpg==0.31.0
+    # via parch-backend
 click==8.5.0
     # via uvicorn
 fastapi==0.141.1
@@ -26,6 +28,8 @@ python-dotenv==1.2.3
     # via pydantic-settings
 redis==8.1.0
     # via parch-backend
+sqlalchemy==2.1.1
+    # via parch-backend
 starlette==1.7.0
     # via fastapi
 typing-extensions==4.16.0
@@ -34,6 +38,7 @@ typing-extensions==4.16.0
     #   fastapi
     #   pydantic
     #   pydantic-core
+    #   sqlalchemy
     #   typing-inspection
 typing-inspection==0.4.4
     # via
