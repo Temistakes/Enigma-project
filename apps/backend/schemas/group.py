@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from pydantic import Field, HttpUrl
+from pydantic import Field
 
 from schemas.base import BaseModelConf, GroupStatus, MemberRole, SkillLevel
 from schemas.user import UserProfileResponse
@@ -11,6 +11,7 @@ class GroupMemberResponse(BaseModelConf):
     role: MemberRole
     joined_at: datetime
 
+
 class GroupBase(BaseModelConf):
     name: str = Field(min_length=2, max_length=100)
     industry: str = Field(min_length=2, max_length=50)
@@ -19,9 +20,11 @@ class GroupBase(BaseModelConf):
     chat_links: list[str] = Field(default_factory=list)
     repo_links: list[str] | None = Field(default_factory=list)
 
+
 class GroupCreate(GroupBase):
     max_member: int = Field(default=5, ge=2, le=5)
     roadmap_id: int | None = None
+
 
 class GroupUpdate(BaseModelConf):
     name: str | None = Field(default=None, min_length=2, max_length=100)
@@ -32,6 +35,7 @@ class GroupUpdate(BaseModelConf):
     repo_links: list[str] | None = None
     max_capacity: int | None = Field(default=None, ge=2, le=5)
     status: GroupStatus | None = None
+
 
 class GroupResponse(GroupBase):
     id: int

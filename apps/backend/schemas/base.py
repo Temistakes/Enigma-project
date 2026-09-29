@@ -22,3 +22,10 @@ class GroupStatus(StrEnum):
 class MemberRole(StrEnum):
     CAPTAIN = "captain"
     MEMBER = "member"
+
+
+class ResourceType(StrEnum):
+    ARTICLE = "article"
+    VIDEO = "video"
+    BOOK = "book"
+    DOCS = "docs"
