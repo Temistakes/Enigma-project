@@ -2,15 +2,24 @@ import os
 from pathlib import Path
 from typing import Literal
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-MODE = os.getenv("MODE", "DEV").lower()
+RAW_MODE = os.getenv("MODE", "DEV").upper()
 BASE_DIR = Path(__file__).resolve().parent.parent
-ENV_FILE = BASE_DIR / f".env.{MODE}"
+ENV_FILE = BASE_DIR / f".env.{RAW_MODE.lower()}"
 
 
 class Settings(BaseSettings):
     MODE: Literal["TEST", "DEV", "PROD"]
+
+
+    @field_validator("MODE", mode="before")
+    @classmethod
+    def normalize_mode(cls, v: str) -> str:
+        if isinstance(v, str):
+            return v.upper()
+        return v
 
     DB_HOST: str
     DB_PORT: int
