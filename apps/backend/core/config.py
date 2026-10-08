@@ -13,7 +13,6 @@ ENV_FILE = BASE_DIR / f".env.{RAW_MODE.lower()}"
 class Settings(BaseSettings):
     MODE: Literal["TEST", "DEV", "PROD"]
 
-
     @field_validator("MODE", mode="before")
     @classmethod
     def normalize_mode(cls, v: str) -> str:
