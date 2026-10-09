@@ -43,7 +43,7 @@ class GroupTopicProgressResponse(BaseModelConf):
     topic: RoadmapTopicResponse
     participants_progress: list[ParticipantProgressItem] = Field(default_factory=list)
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def is_team_completed(self) -> bool:
         if not self.participants_progress:
