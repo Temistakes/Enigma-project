@@ -15,6 +15,7 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mypy>=2.3.1",
+    "pre-commit>=4.6.2",
     "pytest>=9.1.1",
     "pytest-asyncio>=1.4.0",
     "pytest-env>=1.7.1",
@@ -29,7 +30,9 @@ exclude = [
     ".git",
     ".venv",
     "__pycache__",
+    "migrations"
 ]
+
 [tool.ruff.lint]
 select = [
     "E",
@@ -39,6 +42,7 @@ select = [
     "B",
     "UP",
 ]
+
 ignore = [
     "B008",
 ]
@@ -46,6 +50,18 @@ ignore = [
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+known-first-party = [
+    "api",
+    "core",
+    "infrastructure",
+    "models",
+    "schemas",
+    "services",
+    "utils",
+]
 
 [tool.ty.environment]
 root = ["."]
@@ -55,11 +71,12 @@ possibly-unresolved-reference = "warn"
 
 [tool.mypy]
 python_version = "3.13"
-strict = true
 ignore_missing_imports = true
+strict = true
 plugins = [
     "pydantic.mypy",
 ]
+exclude = ["migrations/"]
 
 [tool.pydantic-mypy]
 init_forbid_extra = true
