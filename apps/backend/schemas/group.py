@@ -22,7 +22,7 @@ class GroupBase(BaseModelConf):
 
 
 class GroupCreate(GroupBase):
-    max_member: int = Field(default=5, ge=2, le=5)
+    max_capacity: int = Field(default=5, ge=2, le=5)
     roadmap_id: int | None = None
 
 
@@ -42,7 +42,7 @@ class GroupResponse(GroupBase):
     captain_id: int
     status: GroupStatus
     max_capacity: int
-    members_count: int
+    members_count: int = 0
     members: list[GroupMemberResponse] = Field(default_factory=list)
     created_at: datetime
 
