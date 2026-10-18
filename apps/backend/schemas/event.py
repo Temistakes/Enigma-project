@@ -16,7 +16,7 @@ class CalendarEventBase(BaseModelConf):
 
 
 class CalendarEventCreate(CalendarEventBase):
-    group_id: int
+    group_id: int | None = None
 
 
 class CalendarEventUpdate(BaseModelConf):
@@ -29,5 +29,6 @@ class CalendarEventUpdate(BaseModelConf):
 
 class CalendarEventResponse(CalendarEventBase):
     id: int
-    group_id: int
+    group_id: int | None = None
     creator_id: int
+    created_at: datetime
