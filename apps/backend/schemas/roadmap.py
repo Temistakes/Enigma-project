@@ -11,6 +11,20 @@ class ResourceItem(BaseModelConf):
     resource_type: ResourceType = ResourceType.ARTICLE
 
 
+class RoadmapBase(BaseModelConf):
+    title: str = Field(min_length=2, max_length=150)
+    description: str | None = None
+
+
+class RoadmapCreate(RoadmapBase):
+    pass
+
+
+class RoadmapUpdate(BaseModelConf):
+    title: str | None = Field(default=None, min_length=2, max_length=150)
+    description: str | None = None
+
+
 class RoadmapTopicBase(BaseModelConf):
     title: str = Field(min_length=2, max_length=150)
     description: str | None = None
@@ -26,6 +40,12 @@ class RoadmapTopicCreate(RoadmapTopicBase):
 
 class RoadmapTopicResponse(RoadmapTopicBase):
     id: int
+
+
+class RoadmapResponse(RoadmapBase):
+    id: int
+    created_at: datetime
+    topics: list[RoadmapTopicResponse] = Field(default_factory=list)
 
 
 class ToggleTopicProgressRequest(BaseModelConf):
