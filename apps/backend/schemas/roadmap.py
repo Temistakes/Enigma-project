@@ -17,7 +17,7 @@ class RoadmapTopicBase(BaseModelConf):
     order: int = Field(
         default=1, ge=1, description="Порядковый номер тем. Потом забуду просто"
     )
-    resource: list[ResourceItem] = Field(default_factory=list)
+    resources: list[ResourceItem] = Field(default_factory=list)
 
 
 class RoadmapTopicCreate(RoadmapTopicBase):
