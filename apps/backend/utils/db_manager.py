@@ -23,7 +23,8 @@ class DBManager:
         exc_val: BaseException | None = None,
         exc_tb: TracebackType | None = None,
     ) -> None:
-        await self.session.rollback()
+        if exc_type is not None:
+            await self.session.rollback()
         await self.session.close()
 
     async def commit(self) -> None:
