@@ -22,7 +22,7 @@ class GroupBase(BaseModelConf):
 
 
 class GroupCreate(GroupBase):
-    max_member: int = Field(default=5, ge=2, le=5)
+    max_capacity: int = Field(default=5, ge=2, le=5)
     roadmap_id: int | None = None
 
 
