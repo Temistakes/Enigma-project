@@ -91,6 +91,12 @@ class Group(Base):
         cascade="all, delete-orphan",
     )
 
+    @property
+    def members_count(self) -> int:
+        if "members" in self.__dict__ and self.members is not None:
+            return len(self.members)
+        return 0
+
 
 class GroupMember(Base):
     __tablename__ = "group_members"

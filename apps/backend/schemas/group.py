@@ -42,7 +42,7 @@ class GroupResponse(GroupBase):
     captain_id: int
     status: GroupStatus
     max_capacity: int
-    members_count: int
+    members_count: int = 0
     members: list[GroupMemberResponse] = Field(default_factory=list)
     created_at: datetime
 
