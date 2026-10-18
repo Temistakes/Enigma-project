@@ -1,9 +1,12 @@
 from schemas.base import (
     BaseModelConf,
+    CompetitionStatus,
     GroupStatus,
     MemberRole,
+    ProjectStatus,
     ResourceType,
     SkillLevel,
+    TaskStatus,
 )
 from schemas.competition import (
     CompetitionBase,
@@ -64,6 +67,9 @@ __all__ = [
     "GroupStatus",
     "MemberRole",
     "ResourceType",
+    "ProjectStatus",
+    "TaskStatus",
+    "CompetitionStatus",
     "UserProfileBase",
     "UserProfileCreate",
     "UserProfileUpdate",

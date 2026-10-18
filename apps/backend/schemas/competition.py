@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import Field
 
-from schemas.base import BaseModelConf
+from schemas.base import BaseModelConf, CompetitionStatus
 
 
 class CompetitionParticipantBase(BaseModelConf):
@@ -27,7 +27,7 @@ class CompetitionBase(BaseModelConf):
     description: str | None = None
     start_time: datetime
     end_time: datetime
-    status: str = Field(default="planned", max_length=20)
+    status: CompetitionStatus = CompetitionStatus.PLANNED
     result: str | None = None
 
 
@@ -40,7 +40,7 @@ class CompetitionUpdate(BaseModelConf):
     description: str | None = None
     start_time: datetime | None = None
     end_time: datetime | None = None
-    status: str | None = Field(default=None, max_length=20)
+    status: CompetitionStatus | None = None
     result: str | None = None
 
 

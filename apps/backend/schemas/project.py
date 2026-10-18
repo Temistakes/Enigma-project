@@ -2,13 +2,13 @@ from datetime import datetime
 
 from pydantic import Field
 
-from schemas.base import BaseModelConf
+from schemas.base import BaseModelConf, ProjectStatus, TaskStatus
 
 
 class ProjectTaskBase(BaseModelConf):
     title: str = Field(min_length=2, max_length=150)
     description: str | None = None
-    status: str = Field(default="todo", max_length=20)
+    status: TaskStatus = TaskStatus.TODO
     due_date: datetime | None = None
 
 
@@ -20,7 +20,7 @@ class ProjectTaskCreate(ProjectTaskBase):
 class ProjectTaskUpdate(BaseModelConf):
     title: str | None = Field(default=None, min_length=2, max_length=150)
     description: str | None = None
-    status: str | None = Field(default=None, max_length=20)
+    status: TaskStatus | None = None
     assignee_id: int | None = None
     due_date: datetime | None = None
 
@@ -37,7 +37,7 @@ class ProjectBase(BaseModelConf):
     description: str | None = None
     repo_url: str | None = Field(default=None, max_length=500)
     demo_url: str | None = Field(default=None, max_length=500)
-    status: str = Field(default="planning", max_length=20)
+    status: ProjectStatus = ProjectStatus.PLANNING
 
 
 class ProjectCreate(ProjectBase):
@@ -49,7 +49,7 @@ class ProjectUpdate(BaseModelConf):
     description: str | None = None
     repo_url: str | None = Field(default=None, max_length=500)
     demo_url: str | None = Field(default=None, max_length=500)
-    status: str | None = Field(default=None, max_length=20)
+    status: ProjectStatus | None = None
 
 
 class ProjectResponse(ProjectBase):
